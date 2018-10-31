@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration
+PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	<!--mybatis生成工具的帮助文档可以看： -->
+	<!--英文：http://www.mybatis.org/generator/usage/mysql.html -->
+	<!--中文：http://www.mybatis.tk/ -->
+	<!--中文：http://mbg.cndocs.tk/ -->
+	<classPathEntry
+            location="/Users/macbook37349/.m2/repository/mysql/mysql-connector-java/5.1.47/mysql-connector-java-5.1.47.jar"/>
+	<context id="context" targetRuntime="MyBatis3Simple">
+		<!--设置编码格式 -->
+		<property name="javaFileEncoding" value="UTF-8" />
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://localhost:3306/newusercenter"
+			userId="root" password="goldwind" />
+		<!--要生成的 domain 模块位置 -->
+		<javaModelGenerator targetPackage="com.goldwind.securitysample.domain"
+			targetProject="src/main/java">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+			<property name="comments" value="true" />
+		</javaModelGenerator>
+		<!--要生成的 Mapper.xml 文件位置 -->
+		<sqlMapGenerator targetPackage="mapper"
+			targetProject="src/main/resources">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+		<!--要生成的 Mapper 接口类 -->
+		<javaClientGenerator
+			targetPackage="com.goldwind.securitysample.mapper" targetProject="src/main/java"
+			type="XMLMAPPER">
+			<property name="enableSubPackages" value="false" />
+		</javaClientGenerator>
+		<!-- 根据数据库表生成Java文件的相关规则 -->
+		<!-- tableName="%"表示数据库中所有表都参与逆向工程，此时使用默认规则 -->
+		<!-- 默认规则：table_dept→TableDept -->
+		<!-- 不符合默认规则时需要使用tableName和domainObjectName两个属性明确指定 -->
+		<table tableName="sys_user" domainObjectName="SysUser">
+			<!-- 配置主键生成策略 -->
+			<generatedKey column="id" sqlStatement="Mysql" identity="true" />
+		</table>
+		<table tableName="sys_role" domainObjectName="SysRole">
+			<!-- 配置主键生成策略 -->
+			<generatedKey column="id" sqlStatement="Mysql" identity="true" />
+		</table>
+		<!-- <table tableName="sys_user_role" domainObjectName="SysUserRole">
+			配置主键生成策略
+			<generatedKey column="id" sqlStatement="Mysql" identity="true" />
+		</table> -->
+		<!-- <table tableName="sys_user" domainObjectName="Resource">
+			配置主键生成策略
+			<generatedKey column="id" sqlStatement="Mysql" identity="true" />
+		</table> -->
+	</context>
+</generatorConfiguration>
